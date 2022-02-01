@@ -1,12 +1,12 @@
 {
   "data": [
     {
-      "id": "concepts",
-      "label": "Concepts",
+      "id": "dimensions",
+      "label": "Dimensions",
       "elements": [
         {
-          "id": "dimID",
-          "label": "A dimension",
+          "id": "dimension",
+          "label": "Dimension",
           "type": "DIMENSION",
           "options": {
             "min": 1,
@@ -14,8 +14,56 @@
           }
         },
         {
-          "id": "metricID",
-          "label": "A metric",
+          "id": "dimension_breakdown",
+          "label": "Breakdown Dimension",
+          "type": "DIMENSION",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "metrics",
+      "label": "Metric",
+      "elements": [
+        {
+          "id": "metric",
+          "label": "Metric",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "metric_lower",
+          "label": "CI Lower Bound",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "metric_upper",
+          "label": "CI Upper Bound",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "breakdownSort",
+      "label": "Breakdown Sort Order",
+      "elements": [
+        {
+          "id": "breakdown_sort_order",
+          "label": "Metric",
           "type": "METRIC",
           "options": {
             "min": 1,
@@ -25,5 +73,593 @@
       ]
     }
   ],
-  "style": [ ]
+  "style": [
+    {
+      "id": "chartStyle",
+      "label": "Chart",
+      "elements": [
+        {
+          "id": "chartTitle",
+          "label": "Chart Title",
+          "type": "TEXTINPUT",
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "id": "breakdownSortStyle",
+      "label": "Breakdown Sort",
+      "elements": [
+        {
+          "id": "sortAggFunc",
+          "label": "Aggregate Function for Sort Order",
+          "type": "SELECT_RADIO",
+          "defaultValue": "avg",
+          "options": [
+            {
+              "value": "avg",
+              "label": "avg"
+            },
+            {
+              "value": "sum",
+              "label": "sum"
+            },
+            {
+              "value": "min",
+              "label": "min"
+            },
+            {
+              "value": "max",
+              "label": "max"
+            }
+          ]
+        },
+        {
+          "id": "sortAscend",
+          "label": "Sort Method",
+          "type": "SELECT_RADIO",
+          "defaultValue": "Descending",
+          "options": [
+            {
+              "value": "Descending",
+              "label": "Descending"
+            },
+            {
+              "value": "Ascending",
+              "label": "Ascending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xAxis",
+      "label": "X-Axis",
+      "elements": [
+        {
+          "id": "xAxisDate",
+          "label": "Is x-axis a date?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "xLabel",
+          "label": "Axis Title",
+          "type": "TEXTINPUT",
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "id": "yAxis",
+      "label": "Y-Axis",
+      "elements": [
+        {
+          "id": "yMin",
+          "label": "Axis Min",
+          "type": "TEXTINPUT",
+          "defaultValue": "null"
+        },
+        {
+          "id": "yMax",
+          "label": "Axis Max",
+          "type": "TEXTINPUT",
+          "defaultValue": "null"
+        },
+        {
+          "id": "yLabel",
+          "label": "Axis Title",
+          "type": "TEXTINPUT",
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "id": "numberFormats",
+      "label": "Number Formatting",
+      "elements": [
+        {
+          "id": "metricFormatString",
+          "label": "Format String for Metrics",
+          "type": "TEXTINPUT",
+          "defaultValue": ",.0f"
+        },
+        {
+          "id": "ciFormatString",
+          "label": "Format String for CI",
+          "type": "TEXTINPUT",
+          "defaultValue": ",.0f"
+        }
+      ]
+    },
+    {
+      "id": "metricStyles1",
+      "label": "Metric #1",
+      "elements": [
+        {
+          "id": "metricLineWeight1",
+          "label": "Line Weight 1",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor1",
+          "label": "Line Color 1",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor1",
+          "label": "CI Fill Color 1",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity1",
+          "label": "CI Fill Opacity 1",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints1",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI1",
+          "label": "Hide CI #1 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles2",
+      "label": "Metric #2",
+      "elements": [
+        {
+          "id": "metricLineWeight2",
+          "label": "Line Weight 2",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor2",
+          "label": "Line Color 2",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor2",
+          "label": "CI Fill Color 2",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity2",
+          "label": "CI Fill Opacity 2",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints2",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI2",
+          "label": "Hide CI #2 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles3",
+      "label": "Metric #3",
+      "elements": [
+        {
+          "id": "metricLineWeight3",
+          "label": "Line Weight 3",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor3",
+          "label": "Line Color 3",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor3",
+          "label": "CI Fill Color 3",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity3",
+          "label": "CI Fill Opacity 3",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints3",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI3",
+          "label": "Hide CI #3 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles4",
+      "label": "Metric #4",
+      "elements": [
+        {
+          "id": "metricLineWeight4",
+          "label": "Line Weight 4",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor4",
+          "label": "Line Color 4",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor4",
+          "label": "CI Fill Color 4",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity4",
+          "label": "CI Fill Opacity 4",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints4",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI4",
+          "label": "Hide CI #4 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles5",
+      "label": "Metric #5",
+      "elements": [
+        {
+          "id": "metricLineWeight5",
+          "label": "Line Weight 5",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor5",
+          "label": "Line Color 5",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor5",
+          "label": "CI Fill Color 5",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity5",
+          "label": "CI Fill Opacity 5",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints5",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI5",
+          "label": "Hide CI #5 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles6",
+      "label": "Metric #6",
+      "elements": [
+        {
+          "id": "metricLineWeight6",
+          "label": "Line Weight 6",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor6",
+          "label": "Line Color 6",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor6",
+          "label": "CI Fill Color 6",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity6",
+          "label": "CI Fill Opacity 6",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints6",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI6",
+          "label": "Hide CI #6 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles7",
+      "label": "Metric #7",
+      "elements": [
+        {
+          "id": "metricLineWeight7",
+          "label": "Line Weight 7",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor7",
+          "label": "Line Color 7",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor7",
+          "label": "CI Fill Color 7",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity7",
+          "label": "CI Fill Opacity 7",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints7",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI7",
+          "label": "Hide CI #7 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles8",
+      "label": "Metric #8",
+      "elements": [
+        {
+          "id": "metricLineWeight8",
+          "label": "Line Weight 8",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor8",
+          "label": "Line Color 8",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor8",
+          "label": "CI Fill Color 8",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity8",
+          "label": "CI Fill Opacity 8",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints8",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI8",
+          "label": "Hide CI #8 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles9",
+      "label": "Metric #9",
+      "elements": [
+        {
+          "id": "metricLineWeight9",
+          "label": "Line Weight 9",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor9",
+          "label": "Line Color 9",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor9",
+          "label": "CI Fill Color 9",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity9",
+          "label": "CI Fill Opacity 9",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints9",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI9",
+          "label": "Hide CI #9 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+    ,
+    {
+      "id": "metricStyles10",
+      "label": "Metric #10",
+      "elements": [
+        {
+          "id": "metricLineWeight10",
+          "label": "Line Weight 10",
+          "type": "LINE_WEIGHT",
+          "defaultValue": "2"
+        },
+        {
+          "id": "metricColor10",
+          "label": "Line Color 10",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillColor10",
+          "label": "CI Fill Color 10",
+          "type": "BORDER_COLOR",
+          "defaultValue": {
+            "color": ""
+          }
+        },
+        {
+          "id": "metricFillOpacity10",
+          "label": "CI Fill Opacity 10",
+          "type": "OPACITY",
+          "defaultValue": "0.1"
+        },
+        {
+          "id": "metricShowPoints10",
+          "label": "Show Points",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        },
+        {
+          "id": "metricHideCI10",
+          "label": "Hide CI #10 on initial load?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    }
+  ]  
 }
