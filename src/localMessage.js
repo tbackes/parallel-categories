@@ -189,6 +189,10 @@ export const message = {
         "color": "#00b6cb"
       }
     },
+    "metricShowPoints2": {
+      "value": true,
+      "defaultValue": true
+    },
     "metricLineWeight3": {
       "value": 2,
       "defaultValue": 2
@@ -208,6 +212,22 @@ export const message = {
       "defaultValue": {
         "color": "#f10096"
       }
+    },
+    "metricShowPoints3": {
+      "value": true,
+      "defaultValue": true
+    },
+    "metricHideCI1": {
+      "value": true,
+      "defaultValue": false
+    },
+    "metricHideCI2": {
+      "value": false,
+      "defaultValue": false
+    },
+    "metricHideCI3": {
+      "value": false,
+      "defaultValue": false
     },
     "metricFillOpacity1": {
       "value": 0.3,

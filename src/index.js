@@ -138,27 +138,9 @@ const drawViz = message => {
   // -------------------------
   const chartTitle = styleVal(message, 'chartTitle');
   const xAxisDate = styleVal(message, 'xAxisDate');
-  // const xLabel = styleVal(message, 'xLabel');
-  // const yAxisMin = styleVal(message, 'yMin');
-  // const yAxisMax = styleVal(message, 'yMax');
-  // const yLabel = styleVal(message, 'yLabel');
   const metricFmt = styleVal(message, 'metricFormatString');
   const pctFmt = styleVal(message, 'pctFormatString');
 
-  // // get unique breakdown groups
-  // // -------------------------
-  // // Get sorted list of breakdown labels
-  // const sortAggFunc = styleVal(message, "sortAggFunc");
-  // const sortAscend = styleVal(message, "sortAscend") == 'Ascending';
-  // const dimension_values = getAggSortOrder(sortAggFunc, sortAscend, message, "dimension", "breakdown_sort_order")
-  // // const dimension_values = [...new Set(message.tables.DEFAULT.map(d => d.dimension_breakdown[0]))];
-  // console.log('Sorted groups: ' + dimension_values)
-  // const dimension_names = message.fields.metric_lower[0].name
-  // let n_groups = dimension_values.length;
-  // if (dimension_values.length > 10){
-  //   console.log(`More than 10 group by categories provided (n=${n_groups}). Truncating to only plot first 10.`)
-  //   n_groups = 10
-  // }
 
   // Gather re-used data
   // -------------------------
@@ -179,12 +161,19 @@ const drawViz = message => {
       label: message.fields.dimension[i].name,
       values: xData,
     };
+    console.log('xData: ' + xData)
 
     dimensions.push(trace);
   }
   // trace for the size of each band
-  const counts = message.tables.DEFAULT.map(d => d.metric[0]);
-  const color = message.tables.DEFAULT.map(d => d.metric_color[0]);
+  const counts = message.tables.DEFAULT.map(d => d.metric[0]*1.0);
+  console.log(message.fields.metric_color.length)
+  const color = message.fields.metric_color.length > 0
+    ? message.tables.DEFAULT.map(d => d.metric_color[0])
+    : message.tables.DEFAULT.map(d => 1.0);
+
+  console.log('Dimensions: ' + dimensions)
+  console.log('counts: ' + counts)
 
   // config for the parallel categories figure
   const data = [
@@ -208,9 +197,12 @@ const drawViz = message => {
   // Layout config
   // -------------------------
   const layout = {
-    height: height+60,
+    //height: height+600,
     // showlegend: true,
+    autosize: true,
     title: chartTitleLayout,
+    xaxis: {automargin: true}
+    // margin: {b: 0}
   };
 
   plotly.newPlot(myDiv, data, layout);
