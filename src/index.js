@@ -138,149 +138,78 @@ const drawViz = message => {
   // -------------------------
   const chartTitle = styleVal(message, 'chartTitle');
   const xAxisDate = styleVal(message, 'xAxisDate');
-  const xLabel = styleVal(message, 'xLabel');
-  const yAxisMin = styleVal(message, 'yMin');
-  const yAxisMax = styleVal(message, 'yMax');
-  const yLabel = styleVal(message, 'yLabel');
+  // const xLabel = styleVal(message, 'xLabel');
+  // const yAxisMin = styleVal(message, 'yMin');
+  // const yAxisMax = styleVal(message, 'yMax');
+  // const yLabel = styleVal(message, 'yLabel');
   const metricFmt = styleVal(message, 'metricFormatString');
-  const ciFmt = styleVal(message, 'ciFormatString');
+  const pctFmt = styleVal(message, 'pctFormatString');
 
-  // get unique breakdown groups
-  // -------------------------
-  // Get sorted list of breakdown labels
-  const sortAggFunc = styleVal(message, "sortAggFunc");
-  const sortAscend = styleVal(message, "sortAscend") == 'Ascending';
-  const breakdown_values = getAggSortOrder(sortAggFunc, sortAscend, message, "dimension_breakdown", "breakdown_sort_order")
-  // const breakdown_values = [...new Set(message.tables.DEFAULT.map(d => d.dimension_breakdown[0]))];
-  console.log('Sorted groups: ' + breakdown_values)
-  let n_groups = breakdown_values.length
-  if (breakdown_values.length > 10){
-    console.log(`More than 10 group by categories provided (n=${n_groups}). Truncating to only plot first 10.`)
-    n_groups = 10
-  }
+  // // get unique breakdown groups
+  // // -------------------------
+  // // Get sorted list of breakdown labels
+  // const sortAggFunc = styleVal(message, "sortAggFunc");
+  // const sortAscend = styleVal(message, "sortAscend") == 'Ascending';
+  // const dimension_values = getAggSortOrder(sortAggFunc, sortAscend, message, "dimension", "breakdown_sort_order")
+  // // const dimension_values = [...new Set(message.tables.DEFAULT.map(d => d.dimension_breakdown[0]))];
+  // console.log('Sorted groups: ' + dimension_values)
+  // const dimension_names = message.fields.metric_lower[0].name
+  // let n_groups = dimension_values.length;
+  // if (dimension_values.length > 10){
+  //   console.log(`More than 10 group by categories provided (n=${n_groups}). Truncating to only plot first 10.`)
+  //   n_groups = 10
+  // }
 
   // Gather re-used data
   // -------------------------
-  const customdata = message.tables.DEFAULT.map(d => [d.metric_lower[0], d.metric_upper[0]]); 
-  const hovertemplate = `<b>%{y:${metricFmt}}</b><i> (%{customdata[0]:${ciFmt}} - %{customdata[1]:${ciFmt}})</i>`;
+  const hovertemplate = `<b>%{count:${metricFmt}}</b><br>%{probability:${pctFmt}}`;
 
-  const xData = xAxisDate && isDate(toDate(message.tables.DEFAULT[0].dimension[0]))
-    ? message.tables.DEFAULT.map(d => toDate(d.dimension[0])) 
-    : message.tables.DEFAULT.map(d => d.dimension[0]);
-
-  // loop through breakdown groups and add traces
+  // loop through dimensions and add traces
   // -------------------------
-  let data = []
+  let dimensions = []
   let i;
-  for (i=0; i<n_groups; i++){
-    // Gather all style parameters for series
-    const metricLineWeight =  styleVal(message, 'metricLineWeight'+(i+1));
-    const metricLineColor =  themeColor(message, 'metricColor'+(i+1), 'themeSeriesColor', i);
-    const metricFillOpacity = styleVal(message, 'metricFillOpacity'+(i+1))
-    const metricFillColor =  hex_to_rgba_str(metricLineColor, metricFillOpacity);
-    const metricShowPoints =  styleVal(message, 'metricShowPoints'+(i+1));
-    const metricHideCI =  styleVal(message, 'metricHideCI'+(i+1));
+  for (i=0; i<message.tables.DEFAULT[0].dimension.length; i++){
 
-    // trace for metric trend line
-    const trace_metric = {
-      x: xData,
-      y: message.tables.DEFAULT.map(d => d.metric[0]),
-      customdata,
-      line: {
-        color: metricLineColor,
-        width: metricLineWeight
-      }, 
-      mode: (metricShowPoints)? 'lines+markers' : 'lines', 
-      transforms: [{
-      	type: 'filter',
-      	target: message.tables.DEFAULT.map(d => d.dimension_breakdown[0]),
-        operation: '=',
-        value: breakdown_values[i]
-      }],
-      name: breakdown_values[i], 
-      type: "lines",
-      legendgroup: 'metric'+i, 
-      hovertemplate
+    const xData = xAxisDate && isDate(toDate(message.tables.DEFAULT[0].dimension[i]))
+      ? message.tables.DEFAULT.map(d => toDate(d.dimension[i])) 
+      : message.tables.DEFAULT.map(d => d.dimension[i]);
+
+    // trace for each dimension
+    const trace = {
+      label: message.fields.dimension[i].name,
+      values: xData,
     };
 
-    // trace for lower bound of CI
-    const trace_lower = {
-      x: xData,
-      y: message.tables.DEFAULT.map(d => d.metric_lower[0]),
-      line: {width: 1}, 
-      marker: {color: metricFillColor}, 
-      mode: "lines", 
-      transforms: [{
-        type: 'filter',
-        target: message.tables.DEFAULT.map(d => d.dimension_breakdown[0]),
-        operation: '=',
-        value: breakdown_values[i]
-      }],
-      name: `${breakdown_values[i]}: ${message.fields.metric_lower[0].name}`, 
-      type: "scatter",
-      legendgroup: 'ci'+i,
-      hoverinfo: 'skip', 
-      visible: (metricHideCI)? 'legendonly' : true,
-      showlegend: false
-    };
-
-    // trace for upper bound of CI
-    const trace_upper = {
-      x: xData,
-      y: message.tables.DEFAULT.map(d => d.metric_upper[0]),
-      line: {width: 1}, 
-      fill: "tonexty", 
-      fillcolor: metricFillColor, 
-      marker: {color: metricFillColor}, 
-      line: {color: metricFillColor}, 
-      mode: "lines", 
-      transforms: [{
-        type: 'filter',
-        target: message.tables.DEFAULT.map(d => d.dimension_breakdown[0]),
-        operation: '=',
-        value: breakdown_values[i]
-      }],
-      name: `${breakdown_values[i]}: ${message.fields.metric_upper[0].name}`,
-      type: "scatter",
-      legendgroup: 'ci'+i,
-      hoverinfo: 'skip', 
-      visible: (metricHideCI)? 'legendonly' : true,
-      showlegend: true
-    };
-
-    data.push(trace_metric, trace_lower, trace_upper);
+    dimensions.push(trace);
   }
+  // trace for the size of each band
+  const counts = message.tables.DEFAULT.map(d => d.metric[0]);
+  const color = message.tables.DEFAULT.map(d => d.metric_color[0]);
+
+  // config for the parallel categories figure
+  const data = [
+    {
+      type: 'parcats',
+      dimensions: dimensions,
+      counts: counts,
+      line: {
+        shape: 'hspline',
+        hovertemplate: hovertemplate,
+        color: color
+      },
+      hovertemplate: hovertemplate + '<extra>%{category}</extra>'
+    }
+  ];
 
   // Chart Titles
   // -------------------------
   const chartTitleLayout = isNull(chartTitle) ? {} : {text: chartTitle};
-  const xAxisLayout = isNull(xLabel) ? {} : {title: {text: xLabel}};
-  const yAxisLayout = isNull(yLabel) ? {tickformat: metricFmt} : {tickformat: metricFmt, title: {text: yLabel}};
-
-  // format y-axis range
-  // -------------------------
-  if (!isNumeric(yAxisMin) && !isNumeric(yAxisMax)){
-    yAxisLayout.range = 'auto'
-  }
-  else if (!isNumeric(yAxisMin)){
-    const minValue = Math.min.apply(Math, message.tables.DEFAULT.map(function(d) {return Math.min(...d.metric_lower)}));
-    yAxisLayout.range = [0.9*minValue, yAxisMax];
-  }
-  else if (!isNumeric(yAxisMax)){
-    const maxValue = Math.max.apply(Math, message.tables.DEFAULT.map(function(d) {return Math.max(...d.metric_upper)}));
-    yAxisLayout.range = [yAxisMin, 1.1*maxValue];
-  }
-  else{
-    yAxisLayout.range = [yAxisMin, yAxisMax];
-  }
 
   // Layout config
   // -------------------------
   const layout = {
     height: height+60,
-    showlegend: true,
-    yaxis: yAxisLayout,
-    xaxis: xAxisLayout,
+    // showlegend: true,
     title: chartTitleLayout,
   };
 

@@ -3,181 +3,76 @@ export const message = {
     "DEFAULT": [
       {
         "dimension": [
+          1,
+          2,
+          '2021-12-01',
+          6,
+          8
+        ],
+        "metric": [
+          23878
+        ],
+        "metric_color": [
+          2
+        ]
+      },
+      {
+        "dimension": [
+          1,
+          3,
+          '2021-12-02',
+          6,
+          9
+        ],
+        "metric": [
+          9908
+        ],
+        "metric_color": [
+          2
+        ]
+      },
+      {
+        "dimension": [
+          1,
+          3,
+          '2021-12-02',
+          6,
+          10
+        ],
+        "metric": [
+          57025
+        ],
+        "metric_color": [
           1
-        ],
-        "dimension_breakdown": [
-          "Group A"
-        ],
-        "metric": [
-          1.5
-        ],
-        "metric_lower": [
-          0.5
-        ],
-        "metric_upper": [
-          2
-        ],
-        "breakdown_sort_order": [
-          2
         ]
       },
       {
         "dimension": [
-          2
-        ],
-        "dimension_breakdown": [
-          "Group A"
+          1,
+          3,
+          '2021-12-02',
+          6,
+          8
         ],
         "metric": [
-          1.7
+          9947
         ],
-        "metric_lower": [
-          1
-        ],
-        "metric_upper": [
-          3
-        ],
-        "breakdown_sort_order": [
+        "metric_color": [
           2
         ]
       },
       {
         "dimension": [
-          3
-        ],
-        "dimension_breakdown": [
-          "Group A"
-        ],
-        "metric": [
-          1.5
-        ],
-        "metric_lower": [
-          0.8
-        ],
-        "metric_upper": [
-          2.5
-        ],
-        "breakdown_sort_order": [
-          2
-        ]
-      },
-      {
-        "dimension": [
-          4
-        ],
-        "dimension_breakdown": [
-          "Group A"
+          1,
+          3,
+          '2021-12-02',
+          7,
+          11
         ],
         "metric": [
-          1.6
+          8374
         ],
-        "metric_lower": [
-          1.2
-        ],
-        "metric_upper": [
-          4
-        ],
-        "breakdown_sort_order": [
-          2
-        ]
-      },
-      {
-        "dimension": [
-          5
-        ],
-        "dimension_breakdown": [
-          "Group A"
-        ],
-        "metric": [
-          1.4
-        ],
-        "metric_lower": [
-          0.9
-        ],
-        "metric_upper": [
-          3.5
-        ],
-        "breakdown_sort_order": [
-          2
-        ]
-      },
-      {
-        "dimension": [
-          1
-        ],
-        "dimension_breakdown": [
-          "Group B"
-        ],
-        "metric": [
-          4.5
-        ],
-        "metric_lower": [
-          4.2
-        ],
-        "metric_upper": [
-          5
-        ],
-        "breakdown_sort_order": [
-          5
-        ]
-      },
-      {
-        "dimension": [
-          2
-        ],
-        "dimension_breakdown": [
-          "Group B"
-        ],
-        "metric": [
-          2.5
-        ],
-        "metric_lower": [
-          1.5
-        ],
-        "metric_upper": [
-          3.1
-        ],
-        "breakdown_sort_order": [
-          5
-        ]
-      },
-      {
-        "dimension": [
-          3
-        ],
-        "dimension_breakdown": [
-          "Group B"
-        ],
-        "metric": [
-          3
-        ],
-        "metric_lower": [
-          2.9
-        ],
-        "metric_upper": [
-          4.1
-        ],
-        "breakdown_sort_order": [
-          5
-        ]
-      },
-      {
-        "dimension": [
-          4
-        ],
-        "dimension_breakdown": [
-          "Group B"
-        ],
-        "metric": [
-          5
-        ],
-        "metric_lower": [
-          3.5
-        ],
-        "metric_upper": [
-          5.2
-        ],
-        "breakdown_sort_order": [
+        "metric_color": [
           5
         ]
       }
@@ -187,7 +82,31 @@ export const message = {
     "dimension": [
       {
         "id": "qt_a62c3nqogc",
-        "name": "Index",
+        "name": "category_1",
+        "type": "NUMBER",
+        "concept": "DIMENSION"
+      },
+      {
+        "id": "qt_a62c3nqogd",
+        "name": "category_2",
+        "type": "NUMBER",
+        "concept": "DIMENSION"
+      },
+      {
+        "id": "qt_a62c3nqoge",
+        "name": "category_3",
+        "type": "NUMBER",
+        "concept": "DIMENSION"
+      },
+      {
+        "id": "qt_a62c3nqogf",
+        "name": "category_4",
+        "type": "NUMBER",
+        "concept": "DIMENSION"
+      },
+      {
+        "id": "qt_a62c3nqogg",
+        "name": "category_5",
         "type": "NUMBER",
         "concept": "DIMENSION"
       }
@@ -198,61 +117,9 @@ export const message = {
         "name": "est",
         "type": "NUMBER",
         "concept": "METRIC"
-      },
-      {
-        "id": "qt_zvecch1jgc",
-        "name": "Metric 2",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      },
-      {
-        "id": "qt_z45cch1jgc",
-        "name": "Metric 3",
-        "type": "NUMBER",
-        "concept": "METRIC"
       }
     ],
-    "metric_lower": [
-      {
-        "id": "qt_4x3c3nqogc",
-        "name": "ci_lower",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      },
-      {
-        "id": "qt_zv235h1jgc",
-        "name": "Metric 2 - 95% CI (Lower)",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      },
-      {
-        "id": "qt_zv23567jgc",
-        "name": "Metric 3 - 95% CI (Lower)",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      }
-    ],
-    "metric_upper": [
-      {
-        "id": "qt_ec9ldoqogc",
-        "name": "ci_upper",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      },
-      {
-        "id": "qt_zv23444jgc",
-        "name": "Metric 2 - 95% CI (Upper)",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      },
-      {
-        "id": "qt_zv235h55gc",
-        "name": "Metric 3 - 95% CI (Lower)",
-        "type": "NUMBER",
-        "concept": "METRIC"
-      }
-    ],
-    "breakdown_sort_order": [
+    "metric_color": [
       {
         "id": "djlkjsjfjjf",
         "name": "Sort Order",
@@ -266,14 +133,6 @@ export const message = {
       "value": "Grouped<br>Try multiline",
       "defaultValue": ""
     },
-    "sortAggFunc": {
-      "value": "max",
-      "defaultValue": "avg"
-    },
-    "sortAscend": {
-      "value": "Ascending",
-      "defaultValue": "Descending"
-    },
     "xAxisDate": {
       "value": false,
       "defaultValue": false
@@ -282,25 +141,13 @@ export const message = {
       "value": "X axis",
       "defaultValue": null
     },
-    "yMin": {
-      "value": null,
-      "defaultValue": null
-    },
-    "yMax": {
-      "value": null,
-      "defaultValue": null
-    },
-    "yLabel": {
-      "value": "Test Label",
-      "defaultValue": null
-    },
     "metricFormatString": {
-      "value": ".3%",
-      "defaultValue": ",.0f"
+      "value": ",.1s",
+      "defaultValue": ",.3s"
     },
-    "ciFormatString": {
-      "value": ",.0f",
-      "defaultValue": ",.0f"
+    "pctFormatString": {
+      "value": ",.2%",
+      "defaultValue": ",.1%"
     },
     "metricLineWeight1": {
       "value": 2,
@@ -322,10 +169,6 @@ export const message = {
         "color": "#0072f0"
       }
     },
-    "metricShowPoints1": {
-      "value": true,
-      "defaultValue": true
-    },
     "metricLineWeight2": {
       "value": 2,
       "defaultValue": 2
@@ -346,10 +189,6 @@ export const message = {
         "color": "#00b6cb"
       }
     },
-    "metricShowPoints2": {
-      "value": true,
-      "defaultValue": true
-    },
     "metricLineWeight3": {
       "value": 2,
       "defaultValue": 2
@@ -369,22 +208,6 @@ export const message = {
       "defaultValue": {
         "color": "#f10096"
       }
-    },
-    "metricShowPoints3": {
-      "value": true,
-      "defaultValue": true
-    },
-    "metricHideCI1": {
-      "value": true,
-      "defaultValue": false
-    },
-    "metricHideCI2": {
-      "value": false,
-      "defaultValue": false
-    },
-    "metricHideCI3": {
-      "value": false,
-      "defaultValue": false
     },
     "metricFillOpacity1": {
       "value": 0.3,

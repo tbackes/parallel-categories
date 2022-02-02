@@ -10,16 +10,7 @@
           "type": "DIMENSION",
           "options": {
             "min": 1,
-            "max": 1
-          }
-        },
-        {
-          "id": "dimension_breakdown",
-          "label": "Breakdown Dimension",
-          "type": "DIMENSION",
-          "options": {
-            "min": 1,
-            "max": 1
+            "max": 10
           }
         }
       ]
@@ -38,35 +29,11 @@
           }
         },
         {
-          "id": "metric_lower",
-          "label": "CI Lower Bound",
-          "type": "METRIC",
-          "options": {
-            "min": 1,
-            "max": 1
-          }
-        },
-        {
-          "id": "metric_upper",
-          "label": "CI Upper Bound",
-          "type": "METRIC",
-          "options": {
-            "min": 1,
-            "max": 1
-          }
-        }
-      ]
-    },
-    {
-      "id": "breakdownSort",
-      "label": "Breakdown Sort Order",
-      "elements": [
-        {
-          "id": "breakdown_sort_order",
+          "id": "metric_color",
           "label": "Metric",
           "type": "METRIC",
           "options": {
-            "min": 1,
+            "min": 0,
             "max": 1
           }
         }
@@ -87,52 +54,6 @@
       ]
     },
     {
-      "id": "breakdownSortStyle",
-      "label": "Breakdown Sort",
-      "elements": [
-        {
-          "id": "sortAggFunc",
-          "label": "Aggregate Function for Sort Order",
-          "type": "SELECT_RADIO",
-          "defaultValue": "avg",
-          "options": [
-            {
-              "value": "avg",
-              "label": "avg"
-            },
-            {
-              "value": "sum",
-              "label": "sum"
-            },
-            {
-              "value": "min",
-              "label": "min"
-            },
-            {
-              "value": "max",
-              "label": "max"
-            }
-          ]
-        },
-        {
-          "id": "sortAscend",
-          "label": "Sort Method",
-          "type": "SELECT_RADIO",
-          "defaultValue": "Descending",
-          "options": [
-            {
-              "value": "Descending",
-              "label": "Descending"
-            },
-            {
-              "value": "Ascending",
-              "label": "Ascending"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "xAxis",
       "label": "X-Axis",
       "elements": [
@@ -141,36 +62,6 @@
           "label": "Is x-axis a date?",
           "type": "CHECKBOX",
           "defaultValue": "false"
-        },
-        {
-          "id": "xLabel",
-          "label": "Axis Title",
-          "type": "TEXTINPUT",
-          "defaultValue": ""
-        }
-      ]
-    },
-    {
-      "id": "yAxis",
-      "label": "Y-Axis",
-      "elements": [
-        {
-          "id": "yMin",
-          "label": "Axis Min",
-          "type": "TEXTINPUT",
-          "defaultValue": "null"
-        },
-        {
-          "id": "yMax",
-          "label": "Axis Max",
-          "type": "TEXTINPUT",
-          "defaultValue": "null"
-        },
-        {
-          "id": "yLabel",
-          "label": "Axis Title",
-          "type": "TEXTINPUT",
-          "defaultValue": ""
         }
       ]
     },
@@ -182,13 +73,13 @@
           "id": "metricFormatString",
           "label": "Format String for Metrics",
           "type": "TEXTINPUT",
-          "defaultValue": ",.0f"
+          "defaultValue": ",.3s"
         },
         {
-          "id": "ciFormatString",
+          "id": "pctFormatString",
           "label": "Format String for CI",
           "type": "TEXTINPUT",
-          "defaultValue": ",.0f"
+          "defaultValue": ",.1%"
         }
       ]
     },
@@ -223,18 +114,6 @@
           "label": "CI Fill Opacity 1",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints1",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI1",
-          "label": "Hide CI #1 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -270,18 +149,6 @@
           "label": "CI Fill Opacity 2",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints2",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI2",
-          "label": "Hide CI #2 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -317,18 +184,6 @@
           "label": "CI Fill Opacity 3",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints3",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI3",
-          "label": "Hide CI #3 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -364,18 +219,6 @@
           "label": "CI Fill Opacity 4",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints4",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI4",
-          "label": "Hide CI #4 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -411,18 +254,6 @@
           "label": "CI Fill Opacity 5",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints5",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI5",
-          "label": "Hide CI #5 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -458,18 +289,6 @@
           "label": "CI Fill Opacity 6",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints6",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI6",
-          "label": "Hide CI #6 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -505,18 +324,6 @@
           "label": "CI Fill Opacity 7",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints7",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI7",
-          "label": "Hide CI #7 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -552,18 +359,6 @@
           "label": "CI Fill Opacity 8",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints8",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI8",
-          "label": "Hide CI #8 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -599,18 +394,6 @@
           "label": "CI Fill Opacity 9",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints9",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI9",
-          "label": "Hide CI #9 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }
@@ -646,18 +429,6 @@
           "label": "CI Fill Opacity 10",
           "type": "OPACITY",
           "defaultValue": "0.1"
-        },
-        {
-          "id": "metricShowPoints10",
-          "label": "Show Points",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
-        },
-        {
-          "id": "metricHideCI10",
-          "label": "Hide CI #10 on initial load?",
-          "type": "CHECKBOX",
-          "defaultValue": "false"
         }
       ]
     }

@@ -1,7 +1,7 @@
 {
-  "name": "Continuous Error Bars - Grouped",
+  "name": "Parallel Categories",
   "organization": "tbackes",
-  "description": "Grouped line plot with continuous error bars, generated using plotly.js.",
+  "description": "Parallel categories plot, generated using plotly.js.",
   "logoUrl": "https://logo",
   "organizationUrl": "https://url",
   "supportUrl": "https://url",
@@ -11,8 +11,8 @@
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
-      "name": "continuous-error-bars-grouped",
-      "description": "Grouped line plot with continuous error bars.",
+      "name": "parallel-categories",
+      "description": "Parallel categories plot.",
       "iconUrl": "https://url",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
