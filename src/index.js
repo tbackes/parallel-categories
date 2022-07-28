@@ -113,9 +113,9 @@ const getAggSortOrder = (aggFunc, sortAscend, message, groupName, sortName) => {
 const drawViz = message => {
 
   // set margins + canvas size
-  const margin = { top: 10, bottom: 50, right: 10, left: 10 };
-  const height = dscc.getHeight() - margin.top - margin.bottom;
-  const width = dscc.getWidth() - margin.left - margin.right;
+  const margin = { t: 60, b: 0, r: styleVal(message, 'rightPadding'), l: styleVal(message, 'leftPadding') };
+  const height = dscc.getHeight();// - margin.t - margin.b;
+  const width = dscc.getWidth();// - margin.l - margin.r;
 
   // remove the div if it already exists
   if (document.querySelector("div")) {
@@ -197,15 +197,33 @@ const drawViz = message => {
   // Layout config
   // -------------------------
   const layout = {
-    //height: height+600,
+    height: height*0.98,
     // showlegend: true,
-    autosize: true,
+    // autosize: true,
     title: chartTitleLayout,
-    xaxis: {automargin: true}
+    xaxis: {automargin: true},
+    // yaxis: {automargin: true},
+    margin: margin
     // margin: {b: 0}
   };
 
   plotly.newPlot(myDiv, data, layout);
+
+  // var d3 = Plotly.d3;
+
+  // var HEIGHT_IN_PERCENT_OF_PARENT = 80;
+
+  // var gd3 = d3.select(myDiv).append('div').style({
+  //      height: HEIGHT_IN_PERCENT_OF_PARENT + 'vh',
+  //     'margin-top': 0 + 'vh',
+  //     'margin-bottom': 10 + 'vh'
+  // });
+
+  // var gd = gd3.node();
+  // Plotly.newPlot(gd, data, layout);
+  // window.onresize = function() {
+  //     Plotly.Plots.resize(gd);
+  // };
 };
 
 // renders locally

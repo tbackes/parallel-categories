@@ -1,0 +1,24 @@
+{
+  "name": "Parallel Categories",
+  "organization": "tbackes",
+  "description": "Parallel categories plot, generated using plotly.js.",
+  "logoUrl": "https://logo",
+  "organizationUrl": "https://url",
+  "supportUrl": "https://url",
+  "privacyPolicyUrl": "https://url",
+  "termsOfServiceUrl": "https://url",
+  "packageUrl": "https://url",
+  "devMode": false,
+  "components": [
+    {
+      "name": "parallel-categories",
+      "description": "Parallel categories plot.",
+      "iconUrl": "https://url",
+      "resource": {
+        "js": "gs://tbackes_viz/parallel-categories/index.js",
+        "config": "gs://tbackes_viz/parallel-categories/index.json",
+        "css": "gs://tbackes_viz/parallel-categories/index.css"
+      }
+    }
+  ]
+}

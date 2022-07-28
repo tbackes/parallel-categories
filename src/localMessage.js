@@ -3,7 +3,7 @@ export const message = {
     "DEFAULT": [
       {
         "dimension": [
-          1,
+          'I am a really long label what happens',
           2,
           '2021-12-01',
           6,
@@ -132,6 +132,14 @@ export const message = {
     "chartTitle": {
       "value": "Grouped<br>Try multiline",
       "defaultValue": ""
+    },
+    "leftPadding": {
+      "value": "Test",
+      "defaultValue": ""
+    },
+    "rightPadding": {
+      "value": "Test",
+      "defaultValue": "50"
     },
     "xAxisDate": {
       "value": false,
